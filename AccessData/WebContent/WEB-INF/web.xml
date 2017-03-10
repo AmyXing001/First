@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <context-param><!-- 初始化count为100 -->
+    <param-name>count</param-name>
+    <param-value>100</param-value>
+  </context-param>
+  
+   <!-- 监听器 -->
+  <listener>
+  	<listener-class>com.xan.action.CountListener</listener-class>
+  </listener>
+  
+  <welcome-file-list>
+	<welcome-file>Date.jsp</welcome-file>  
+  </welcome-file-list>
+  
+  <servlet>
+  	<servlet-name>context01Servlet</servlet-name>
+  	<servlet-class>com.xan.web.Context01Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>context01Servlet</servlet-name>
+  	<url-pattern>/context01</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>context02Servlet</servlet-name>
+  	<servlet-class>com.xan.web.Context02Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>context02Servlet</servlet-name>
+  	<url-pattern>/context02</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>countServlet</servlet-name>
+  	<servlet-class>com.xan.web.CountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>countServlet</servlet-name>
+  	<url-pattern>/count</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>actionServlet</servlet-name>
+  	<servlet-class>com.xan.action.ActionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>actionServlet</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>ValidateServlet</servlet-name>
+  	<servlet-class>com.xan.action.ValidateAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ValidateServlet</servlet-name>
+  	<url-pattern>/code</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>commentServlet</servlet-name>
+  	<servlet-class>com.xan.action.CommentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>commentServlet</servlet-name>
+  	<url-pattern>/comment</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+  	<filter-name>filter1</filter-name>
+  	<filter-class>com.xan.web.CommentFilter</filter-class>
+  	
+  	<init-param>
+  		<param-name>illegalWord</param-name>
+  		<param-value>shuo</param-value>
+  	</init-param> 	
+  </filter>
+  <filter-mapping>
+  	<filter-name>filter1</filter-name>
+  	<url-pattern>/comment</url-pattern>
+  </filter-mapping>
+  
+  <filter>
+  	<filter-name>filter2</filter-name>
+  	<filter-class>com.xan.web.CommentFilter1</filter-class>
+  	<init-param>
+  		<param-name>illegalLength</param-name>
+  		<param-value>30</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>filter2</filter-name>
+  	<url-pattern>/comment</url-pattern>
+  </filter-mapping>
+ 
+</web-app>
